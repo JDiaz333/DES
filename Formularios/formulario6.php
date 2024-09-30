@@ -7,6 +7,9 @@
             <label for="elemento">Elemento</label><br>
             <input type="text" name="nuevo_elemento" required><br>
 
+            
+            <input type="hidden" name="elementos[]">
+
             <input type="submit" value="Añadir"><br>
         </form>
         <?php

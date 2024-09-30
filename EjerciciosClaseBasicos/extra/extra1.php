@@ -5,7 +5,7 @@ function registrarProducto($nom,$cat,$pre,$cant){
    return $productos;
 }
 
-$inventario[] = registrarProducto("Piña","Fruta",60,10);
+$inventario = registrarProducto("Piña","Fruta",60,10);
 foreach($inventario as $tipo => $dato){
     echo $tipo." ".$dato."<br>";
 }

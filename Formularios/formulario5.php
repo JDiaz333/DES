@@ -13,7 +13,7 @@
             <label for="nombres3">Nombre 3:</label><br>
             <input type="text" name="nombres[]">
 
-            <input type="submit" value="Enviar">
+            <input type="submit" value="Enviar"><br>
         </form>
     </body>
 </html>
