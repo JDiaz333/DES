@@ -25,13 +25,18 @@ class App{
     public function auth()
     {
         if(isset($_POST["usuario"]) && isset($_POST["contraseña"])){
-            $usuario = $_POST["usuario"];
-            $contraseña = $_POST["contraseña"];
+            if($_POST["usuario"] != "" && $_POST["contraseña"] != ""){
+                $usuario = $_POST["usuario"];
+                $contraseña = $_POST["contraseña"];
 
-            setcookie("usuario",$usuario,time()+3600*24);
-            setcookie("contaseña",$contraseña,time()+3600*24);
+                setcookie("usuario",$usuario,time()+3600*24);
+                setcookie("contaseña",$contraseña,time()+3600*24);
 
-            header("Location: ?method=home");
+                header("Location: ?method=home");
+            }else{
+                header("Location: ?method=login");
+            }
+            
         }
     }
 

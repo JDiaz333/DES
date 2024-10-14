@@ -8,6 +8,7 @@
         <form action="?method=auth" method="post">
             <label for="">Usuario</label>
             <input type="text" name="usuario"><br>
+            
             <label for="">Contraseña</label>
             <input type="password" name="contraseña"><br>
 
