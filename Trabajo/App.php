@@ -50,7 +50,7 @@ class App
 
     public function logout()
     {
-        setcookie("name", "", time()-1);
+        setcookie("user", "", time()-1);
         setcookie("password", "", time()-1);
         header('Location: ?method=login');
     }
