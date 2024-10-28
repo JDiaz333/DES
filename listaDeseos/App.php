@@ -51,7 +51,7 @@ class App
     public function delete(){
         if(isset($_POST['listaDeseos'])){
             $numDeseo = (int)$_POST['listaDeseos'];
-            
+
             if($numDeseo>0){
 
                 if (isset($_COOKIE['listaDeseos'])){
@@ -59,7 +59,7 @@ class App
                     unset($lista[$numDeseo - 1]);
                 }
 
-                //$lista = array_values($lista);
+                //$lista = array_values($lista); Ahorra todo lo siguiente:
                 foreach($lista as $clave=>$valor){
                     if($numDeseo - 1 == $clave){
                         $lista[$numDeseo - 1] = 0;
@@ -77,7 +77,7 @@ class App
     }
 
     public function empty(){
-
+        
     }
 
     public function logout()
@@ -86,4 +86,11 @@ class App
         setcookie("password", "", time()-1);
         header('Location: ?method=login');
     }
+
+    public function cambio(){
+        if(isset($_GET['color'])){
+
+            $color = (string)$_GET['color'];
+        }
+    } 
 }
