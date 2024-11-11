@@ -33,6 +33,15 @@
                 font-weight: bold;
             }
 
+            .button{
+                padding: 1px 6px;
+                text-decoration: none;
+                background-color: coral;
+                font-weight: bold;
+                color: white;
+                border: none;
+            }
+
             table{
                 width: 100%;
                 border: 1px solid;  
@@ -57,19 +66,11 @@
                 height: 40px;
             }
 
-            button{
-                background-color: coral;
-                font-weight: bold;
-                color: white;
-                border: none;
-                height: 30px;
-            }
-
         </style>
     </head>
     <body>
         <div id="cabecera">
-            <a>Correo: <?echo $_COOKIE['user'];?> |</a>
+            <a>Correo: <?php echo $_COOKIE['usuario'];?> |</a>
             <a href="/ejerciciosPHP/Trabajo/main.php?method=logout">Cerrar sesión</a>
             <h1>MERCADESASTRE</h1>
             <header>
@@ -82,29 +83,33 @@
         <div id="cuerpo">
             <h2>Inventario</h2>
             <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th> 
+                        <th>Stock</th>
+                        <th>Precio/Unidad</th>
+                        <th>Añadido por</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php 
+                $lista = unserialize($_COOKIE['listaProductos']);
+                foreach ($lista as $producto): 
+                ?>
                 <tr>
-                    <th>Producto</th> 
-                    <th>Stock</th>
-                    <th>Precio/Unidad</th>
-                    <th>Añadido por</th>
-                    <th>Acciones</th>
+                    <td><?php echo $producto['nombre']; ?></td>
+                    <td><?php echo $producto['stock']; ?></td>
+                    <td><?php echo '$' . $producto['precio']; ?></td>
+                    <td><?php echo $producto['usuario'] ?></td>
+                    <td>
+                        <a class="button" href="/ejerciciosPHP/Trabajo/main.php?method=delete">Eliminar</a>
+                    </td>
                 </tr>
-                <tr>
-                <td>1</td>
-                <td>AAA</td>
-                <td>111</td>
-                <td>AAA</td>
-                <td>AAA</td>
-                </tr>
-                <tr>
-                <td>2</td>
-                <td>BBB</td>
-                <td>222</td>
-                <td>BBB</td>
-                <td>BBB</td>
-                </tr>
+                <?php endforeach; ?>
+                </tbody>
             </table>
-            <button>Borrar toda la tabla</button>
+            <a class="button" href="/ejerciciosPHP/Trabajo/main.php?method=empty">Borrar toda la tabla</a>
         </div>
     </body>
 </html>
