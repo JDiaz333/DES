@@ -47,12 +47,17 @@
 
             <button type="submit" class="button">Calcular</button>
             <p><?php 
-            if(isset($_COOKIE['prodE'])){
-                echo "<p style=\"color:red\">Producto no encontrado<p> ";
+            if(isset($_COOKIE['prod'])){
+                $prod = unserialize($_COOKIE['prod']);
+                $nombre = $prod['nombre'];
+                $valor = $prod['stock']*$prod['precio'];
+                echo "El valor total de $nombre es: $valor <br>";
             } 
-            if(isset($_COOKIE['valor'])){
-                echo $_COOKIE['valor'];  
-            }
+            if(isset($_COOKIE['prodE'])){
+                if(!isset($_COOKIE['prod'])){
+                    echo "<p style=\"color:red\">Producto no encontrado<p> ";
+                }     
+            } 
             if(isset($_COOKIE['listaProductos'])){
                 $lista = unserialize($_COOKIE['listaProductos']);
                 $valorTotal = 0;

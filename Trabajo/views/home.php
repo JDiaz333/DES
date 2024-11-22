@@ -95,7 +95,7 @@
                 <tbody>
                 <?php 
                 $lista = unserialize($_COOKIE['listaProductos']);
-                foreach ($lista as $producto): 
+                foreach ($lista as $index => $producto): 
                 ?>
                 <tr>
                     <td><?php echo $producto['nombre']; ?></td>
@@ -103,7 +103,7 @@
                     <td><?php echo '$' . $producto['precio']; ?></td>
                     <td><?php echo $producto['usuario'] ?></td>
                     <td>
-                        <a class="button" href="/ejerciciosPHP/Trabajo/main.php?method=delete">Eliminar</a>
+                        <?php echo '<a class="button" href="/ejerciciosPHP/Trabajo/main.php?method=delete&index={$index}">Eliminar</a>';?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

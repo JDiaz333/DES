@@ -101,20 +101,14 @@ class App
     }
 
     public function delete(){
-        if(isset($_COOKIE['listaProductos'])){
-            $numProducto = (int)$_COOKIE['listaProductos'];
+        $lista = unserialize($_COOKIE['listaProductos']);
+        if (isset($lista[$_POST['index']])) {
+            unset($lista[$_POST['index']]);
+            $lista = array_values($lista);
+            setcookie("listaProductos", serialize($lista), time() + 3600*24);
+        }      
+        header('Location: ?method=home'); 
 
-            if($numProducto>0){
-
-                if (isset($_COOKIE['listaProductos'])){
-                    $lista = unserialize($_COOKIE['listaProductos']);
-                    unset($lista[$numProducto - 1]);
-                }
-
-                $lista = array_values($lista);
-            }
-        }
-        header('Location: ?method=home');   
     }
 
     public function enviarCorreo($email) {
@@ -152,12 +146,6 @@ class App
 
     public function calcularValor(){
         $this->buscar();
-        if(isset($_COOKIE['prod'])){
-            $prod = unserialize($_COOKIE['prod']);
-            $nombre = $prod['nombre'];
-            $valor = $prod['stock']*$prod['precio'];
-            setcookie("valor","El valor total de $nombre es: $valor",time()+1);
-        }       
         header('Location: ?method=valorTotal'); 
     }
 }

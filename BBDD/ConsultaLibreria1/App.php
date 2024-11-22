@@ -4,7 +4,7 @@ require "configDB.php";
 
 class App
 {
-    
+
     public function run()
     {
         if (isset($_GET['method'])) {
